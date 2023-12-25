@@ -13,7 +13,7 @@ import 'package:chat_app_flutter/ui/screen/sign_up/sign_up_binding.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class RoutesPage{
-  static String INITTIAL_PAGE=RoutesName.intro;
+  static String INITTIAL_PAGE=RoutesName.login;
 
   static List<GetPage> routes=[
     GetPage(name: RoutesName.intro,page: () => Intro(),binding: IntroBinding()),
