@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
 
-class ForgotController extends GetxController{
-
+class ForgotPassController extends GetxController{
+  void requestResetPass(){}
 }
