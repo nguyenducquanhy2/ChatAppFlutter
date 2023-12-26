@@ -4,4 +4,5 @@ class RoutesName {
   static String signUp="/signUp";
   static String forgotPass="/forgotPass";
   static String homeScreen="/homeScreen";
+  static String verifyAccount="/verifyAccount";
 }

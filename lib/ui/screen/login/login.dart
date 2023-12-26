@@ -1,32 +1,26 @@
+import 'package:chat_app_flutter/ui/common/widget/outline_textfield.dart';
 import 'package:chat_app_flutter/ui/screen/login/login_controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
+import '../../common/base/base_screen_widget.dart';
+import '../../common/widget/check_have_account.dart';
+import '../../common/widget/outline_textfield_password.dart';
 
-class Login extends GetView<LoginController> {
-  String email = '';
-  String password = '';
+class Login extends BaseScreenWidget<LoginController> {
+  String _email = '';
+  String _password = '';
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            'appBarLogin'.tr,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.normal,
-              fontSize: 24,
-              letterSpacing: 0,
-            ),
-          ),
-          backgroundColor: theme.primaryColor),
+      appBar: buildAppBar(theme: theme, title: 'appBarLogin'.tr),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(children: [
+        child: Column(
+            children: [
           SizedBox(
             height: size.height * 0.03,
           ),
@@ -38,7 +32,7 @@ class Login extends GetView<LoginController> {
             height: size.height * 0.03,
           ),
           OutlineTextField(
-            onValueChange: (value) => email = value,
+            onValueChange: (value) => _email = value,
             label: 'email'.tr,
           ),
           SizedBox(
@@ -46,73 +40,66 @@ class Login extends GetView<LoginController> {
           ),
           OutlineTextFieldPassword(
             label: 'password'.tr,
-            onValueChange: (value) => password = value,
+            onValueChange: (value) => _password = value,
+          ),
+          SizedBox(
+            height: size.height * 0.02,
           ),
           Row(
             children: [
-              GestureDetector(onTap: () =>controller.navigateForgotPassScreen(),child: Text('forgot_pass'.tr,style: theme.textTheme.titleMedium)),
+              GestureDetector(
+                  onTap: () => controller.navigateForgotPassScreen(),
+                  child: Text('forgot_pass'.tr,
+                      style:
+                          theme.textTheme.titleMedium?.copyWith(fontSize: 16))),
             ],
-          )
+          ),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: theme.primaryColor,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.2,
+                  ),
+                  elevation: 2),
+              onPressed: () =>controller.login(_email,_password),
+              child: Text(
+                'appBarLogin'.tr,
+                style: theme.textTheme.titleSmall?.copyWith(fontSize: 16,color: Colors.white),
+              )),
+          SizedBox(
+            height: size.height * 0.02,
+          ),
+          CheckHaveAccount(
+              isLogin: true, press: () => controller.navigateSignUpScreen()),
+          SizedBox(
+            height: size.height * 0.02,
+          ),
+          iconSocial(size)
         ]),
       ),
     );
   }
-}
 
-class OutlineTextFieldPassword extends StatelessWidget {
-
-  OutlineTextFieldPassword({
-    super.key,
-    required this.onValueChange,
-    required this.label,
-  });
-  var isPass=true.obs;
-
-  final Function(String) onValueChange;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Obx(
-      () {
-        return TextField(
-          obscureText: isPass.value,
-          onChanged: onValueChange,
-          decoration: InputDecoration(
-              suffixIcon: GestureDetector(
-                onTap: () {
-                  isPass.value =
-                  !isPass.value;
-                },
-                child: Icon(isPass.value
-                    ? Icons.visibility
-                    : Icons.visibility_off),
-              ),
-              label: Text(label),
-              border: const OutlineInputBorder()),
-        );
-
-      },
-    );
-  }
-}
-
-class OutlineTextField extends GetView {
-  final Function(String) onValueChange;
-  final String label;
-
-  const OutlineTextField({
-    super.key,
-    required this.onValueChange,
-    required this.label,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      onChanged: onValueChange,
-      decoration: InputDecoration(
-          label: Text(label), border: const OutlineInputBorder()),
+  Row iconSocial(Size size) {
+    double sizeIconSocial = size.height * 0.08;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+            onTap: () {},
+            child: Image.asset('assets/images/fb.png', height: sizeIconSocial)),
+        GestureDetector(
+            onTap: () {},
+            child: Image.asset('assets/images/gg.png', height: sizeIconSocial)),
+        GestureDetector(
+            onTap: () {},
+            child:
+                Image.asset('assets/images/insta.png', height: sizeIconSocial)),
+        GestureDetector(
+            onTap: () {},
+            child: Image.asset('assets/images/twitch.png',
+                height: sizeIconSocial)),
+      ],
     );
   }
 }
