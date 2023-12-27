@@ -21,30 +21,24 @@ class Login extends BaseScreenWidget<LoginController> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
             children: [
-          SizedBox(
-            height: size.height * 0.03,
-          ),
+          SizedBox(height: size.height * 0.03),
+
           Image.asset(
             'assets/images/system.png',
             height: size.height * 0.25,
           ),
-          SizedBox(
-            height: size.height * 0.03,
-          ),
+          SizedBox(height: size.height * 0.03),
           OutlineTextField(
             onValueChange: (value) => _email = value,
             label: 'email'.tr,
           ),
-          SizedBox(
-            height: size.height * 0.03,
-          ),
+          SizedBox(height: size.height * 0.03),
+
           OutlineTextFieldPassword(
             label: 'password'.tr,
             onValueChange: (value) => _password = value,
           ),
-          SizedBox(
-            height: size.height * 0.02,
-          ),
+          SizedBox(height: size.height * 0.02),
           Row(
             children: [
               GestureDetector(
@@ -66,14 +60,10 @@ class Login extends BaseScreenWidget<LoginController> {
                 'appBarLogin'.tr,
                 style: theme.textTheme.titleSmall?.copyWith(fontSize: 16,color: Colors.white),
               )),
-          SizedBox(
-            height: size.height * 0.02,
-          ),
+          SizedBox(height: size.height * 0.02),
           CheckHaveAccount(
               isLogin: true, press: () => controller.navigateSignUpScreen()),
-          SizedBox(
-            height: size.height * 0.02,
-          ),
+          SizedBox(height: size.height * 0.02),
           iconSocial(size)
         ]),
       ),
