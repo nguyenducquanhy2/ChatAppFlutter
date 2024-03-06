@@ -18,7 +18,7 @@ class RoutesPage{
   static String INITTIAL_PAGE=RoutesName.login;
 
   static List<GetPage> routes=[
-    GetPage(name: RoutesName.intro,page: () => const Intro(),binding: IntroBinding()),
+    GetPage(name: RoutesName.intro,page: () =>  Intro(),binding: IntroBinding()),
     GetPage(name: RoutesName.login,page: () => Login(),binding: LoginBinding()),
     GetPage(name: RoutesName.signUp,page: () => SignUp(),binding: SignUpBinding()),
     GetPage(name: RoutesName.forgotPass,page: () => ForgotPass(),binding: ForgotPassBinding()),

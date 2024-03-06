@@ -1,4 +1,5 @@
 final Map<String, String> viVN = {
+  'title_flutter':'Xin chào Flutter',
   'hello': 'Xin chào',
   'appBarLogin': 'Login',
   'appBarSignUp': 'SignUp',

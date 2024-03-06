@@ -1,4 +1,5 @@
 final Map<String, String> enUS = {
+  'title_flutter':'Intro Flutter',
   'hello': 'Hello',
   'appBarLogin': 'Login',
   'appBarSignUp': 'SignUp',
